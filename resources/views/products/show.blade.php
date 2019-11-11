@@ -23,7 +23,10 @@
         </tbody>
     </table>
     {!! Form::open(['route'=>['products.edit',$product->id]]) !!}
-        {!! Form::submit('製品情報を編集する',['class'=>"btn btn-info"]) !!}
+        {!! Form::submit('製品情報を編集する',['class'=>"btn btn-info mb-2"]) !!}
+    {!! Form::close() !!}
+    {!! Form::open(['route'=>['products.delete_confirmation',$product->id]]) !!}
+        {!! Form::submit('製品情報を削除する',['class'=>"btn btn-danger"]) !!}
     {!! Form::close() !!}
     <br><br><br>
     @include('participate.participate_button',['product'=>$product])
