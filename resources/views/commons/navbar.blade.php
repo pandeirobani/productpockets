@@ -13,8 +13,8 @@
             <ul class="navbar-nav mr-auto"></ul>
             <ul class="navbar-nav">
                 @if(Auth::check()) 
-                    <li class="nav-item"><a href="#" class="nav-link">製品一覧</a></li>
-                    <li class="nav-item"><a href="#" class="nav-link">新規製品登録</a></li>
+                    <li class="nav-item">{!! link_to_route('index.get','製品一覧',[],['class'=>'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('products.create','新規製品登録',[],['class'=>'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('users.index','メンバー',[],['class'=>'nav-link']) !!}</li>
                     <li class="nav-item">{!! link_to_route('logout.get','ログアウト',[],['class'=>'nav-link']) !!}</li>
                 @else

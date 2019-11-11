@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('index.get');
+Route::get('/', 'ProductsController@index')->name('index.get');
 
 //ユーザ登録
 Route::get('signup','Auth\RegisterController@showRegistrationForm')->name('signup.get');
@@ -25,6 +23,8 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 
 //ユーザ機能
 Route::group(['middleware' => ['auth']], function() {
+   Route::get('products/create','ProductsController@create')->name('products.create');
    Route::resource('users','UsersController',['only' => ['index','show']]); 
+   Route::resource('products','ProductsController',['only' => ['store','edit','destroy','show']]);
 });
 
