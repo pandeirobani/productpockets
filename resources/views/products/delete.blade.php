@@ -1,9 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3>{{ $product->name }}</h3>
-<br>
-    @include('products.navtabs',['product'=>$product])
+    <h4>この製品情報を削除しますか？</h4><br>
     <table class="table table-bordered" style="table-layout:fixed;">
         <thead>
             <tr>
@@ -22,10 +20,7 @@
             </tr>
         </tbody>
     </table>
-    {!! Form::open(['route'=>['products.edit',$product->id]]) !!}
-        {!! Form::submit('製品情報を編集する',['class'=>"btn btn-info"]) !!}
+    {!! Form::open(['route'=>['products.destroy',$product->id],'method'=>'delete']) !!}
+        {!! Form::submit('削除する',['class'=>"btn btn-danger"]) !!}
     {!! Form::close() !!}
-    <br><br><br>
-    @include('participate.participate_button',['product'=>$product])
-    
 @endsection

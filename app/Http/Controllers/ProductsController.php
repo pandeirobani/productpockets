@@ -50,17 +50,45 @@ class ProductsController extends Controller
         ]);
     }
     
-    public function participatings($id)
+    public function edit($id)
     {
-        $data = [];
-        $user = User::find($id);
-        $participatings = $user->feed_participatings()->orderBy('created_at','desc')->paginate(20);
+        $product = Product::find($id);
         
-        $data = [
-            'user' => $user,
-            'products' => $participatings,
-        ];
+        return view('products.edit',['product' => $product]);
+    }
+    
+    public function update(Request $request,$id)
+    {
+        $this->validate($request,[
+            'name' => 'required|max:191',
+            'status' => 'nullable',
+            'deadline' => 'nullable|date',
+            'leader_name' => 'required',
+            ]);
+            
+        $product = Product::find($id);
+        $product->name = $request->name;
+        $product->status = $request->status;    
+        $product->deadline = $request->deadline;
+        $product->leader_name = $request->leader_name;
+        $product->save();
         
-        return view('users.show',$data);
+        return view('products.show',['product'=>$product,
+        ]);
+    }
+    
+    public function delete_confirmation($id)
+    {
+        $product = Product::find($id);
+        
+        return view('products.delete',['product' => $product]);
+    }
+    
+    public function destroy($id)
+    {
+        $product = Product::find($id);
+        $product->delete();
+        
+        return redirect('/');
     }
 }

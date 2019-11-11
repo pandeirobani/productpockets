@@ -25,8 +25,10 @@ Route::get('logout', 'Auth\LoginController@logout')->name('logout.get');
 Route::group(['middleware' => ['auth']], function() {
    Route::get('products/create','ProductsController@create')->name('products.create');
    Route::resource('users','UsersController',['only' => ['index','show']]); 
-   Route::resource('products','ProductsController',['only' => ['store','edit','destroy','show']]);
-
+   Route::resource('products','ProductsController',['only' => ['store','destroy','show','update']]);
+   Route::match(['get','post'],'products/{id}/edit','ProductsController@edit')->name('products.edit');  
+   Route::get('products/{id}/delete','ProductsController@delete_confirmation')->name('products.delete_confirmation');
+  
    Route::group(['prefix' =>'users/{id}'],function() {
       Route::post('paticipate','ParticipateController@store')->name('product.participate');
       Route::delete('unparticipate','ParticipateController@destroy')->name('product.unparticipate');
