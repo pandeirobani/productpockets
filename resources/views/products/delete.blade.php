@@ -21,6 +21,9 @@
         </tbody>
     </table>
     {!! Form::open(['route'=>['products.destroy',$product->id],'method'=>'delete']) !!}
-        {!! Form::submit('削除する',['class'=>"btn btn-danger"]) !!}
+        {!! Form::submit('削除する',['class'=>"btn btn-danger mb-2"]) !!}
+    {!! Form::close() !!}
+    {!! Form::open(['route'=>['products.show',$product->id],'method'=>'get']) !!}
+        {!! Form::submit('キャンセル',['class'=>"btn btn-info"]) !!}
     {!! Form::close() !!}
 @endsection
