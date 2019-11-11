@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<h3>メンバー一覧</h3>
+<h3>{{ $product->name }}</h3>
+    @include('products.navtabs',['product'=>$product])
     @include('users.users',['users' => $users])
 @endsection

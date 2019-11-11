@@ -1,5 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    {{ $user->name }}
+    <h3>{{ $user->name }}が参加中のプロジェクト一覧</h3>
+    <br>
+    @include('products.products')
+    
 @endsection

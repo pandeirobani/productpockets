@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\Product;
+use App\User;
 
 class ProductsController extends Controller
 {
@@ -39,5 +40,27 @@ class ProductsController extends Controller
         ]);
 
         return redirect('/');
+    }
+    
+    public function show($id)
+    {
+        $product = Product::find($id);
+        
+        return view('products.show',['product'=>$product,
+        ]);
+    }
+    
+    public function participatings($id)
+    {
+        $data = [];
+        $user = User::find($id);
+        $participatings = $user->feed_participatings()->orderBy('created_at','desc')->paginate(20);
+        
+        $data = [
+            'user' => $user,
+            'products' => $participatings,
+        ];
+        
+        return view('users.show',$data);
     }
 }

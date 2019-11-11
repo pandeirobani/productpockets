@@ -26,5 +26,13 @@ Route::group(['middleware' => ['auth']], function() {
    Route::get('products/create','ProductsController@create')->name('products.create');
    Route::resource('users','UsersController',['only' => ['index','show']]); 
    Route::resource('products','ProductsController',['only' => ['store','edit','destroy','show']]);
+
+   Route::group(['prefix' =>'users/{id}'],function() {
+      Route::post('paticipate','ParticipateController@store')->name('product.participate');
+      Route::delete('unparticipate','ParticipateController@destroy')->name('product.unparticipate');
+      Route::get('participatings','ProductsController@participatings')->name('products.participatings');
+   });
+   
+   Route::get('product/{id}/participants','UsersController@participants')->name('product.participants');
 });
 
