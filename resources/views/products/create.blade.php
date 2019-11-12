@@ -17,7 +17,7 @@
                 
                 <div class="form-group mb-5">
                     {!! Form::label('status','状態') !!}
-                    {!! Form::text('status',old('status'),['class'=>'form-control']) !!}
+                    {!! Form::select('status',['企画','設計','組立て','完成','納品済'],['class'=>'form-control']) !!}
                 </div>
                 
                 <div class="form-group mb-5">

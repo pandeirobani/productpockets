@@ -31,10 +31,13 @@ class ProductsController extends Controller
             'deadline' => 'nullable|date',
             'leader_name' => 'required',
             ]);
-
+        
+        $status_array = ['企画','設計','組立て','完成','納品済'];
+        
+        
         Product::create([
             'name' => $request->name,
-            'status' => $request->status,
+            'status' => $status_array[$request->status],
             'deadline' => $request->deadline,
             'leader_name' => $request->leader_name,
         ]);
@@ -66,9 +69,11 @@ class ProductsController extends Controller
             'leader_name' => 'required',
             ]);
             
+        $status_array = ['企画','設計','組立て','完成','納品済'];
+            
         $product = Product::find($id);
         $product->name = $request->name;
-        $product->status = $request->status;    
+        $product->status = $status_array[$request->status];    
         $product->deadline = $request->deadline;
         $product->leader_name = $request->leader_name;
         $product->save();
