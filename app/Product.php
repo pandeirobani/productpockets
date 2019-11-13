@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 use App\User;
-use App\Product_comments;
+use App\Product_comment;
 
 class Product extends Model
 {
@@ -17,6 +17,6 @@ class Product extends Model
     
     public function product_comments()
     {
-        return $this->hasMany(Product_comments::class);
+        return $this->hasMany(Product_comment::class);
     }
 }

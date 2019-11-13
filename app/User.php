@@ -67,4 +67,6 @@ class User extends Authenticatable
         $participating_ids = $this->participatings()->pluck('products.id')->toArray();
         return Product::whereIn('products.id',$participating_ids);
     }
+    
+    
 }

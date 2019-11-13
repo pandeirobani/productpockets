@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use App\Product;
 use App\User;
 
-class Product_comments extends Model
+class Product_comment extends Model
 {
     protected $fillable = ['user_id','product_id','content'];
     

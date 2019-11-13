@@ -31,5 +31,14 @@
     <br><br><br>
     @include('participate.participate_button',['product'=>$product])
     @include('products.comments',['product_comments' => $product_comments])
+    <div class="col-sm-8">
+        {!! Form::open(['route' => 'product_comment.store']) !!}
+            {!! Form::hidden('product_id',$product->id) !!}
+                <div class="form-group">
+                    {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
+                    {!! Form::submit('コメントを投稿', ['class' => 'btn btn-primary btn-block']) !!}
+                </div>
+        {!! Form::close() !!}
+    </div>
     
 @endsection
