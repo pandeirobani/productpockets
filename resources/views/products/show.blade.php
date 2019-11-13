@@ -30,5 +30,6 @@
     {!! Form::close() !!}
     <br><br><br>
     @include('participate.participate_button',['product'=>$product])
+    @include('products.comments',['product_comments' => $product_comments])
     
 @endsection

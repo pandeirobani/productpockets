@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\Product;
 use App\User;
+use App\Product_comment;
 
 class ProductsController extends Controller
 {
@@ -27,13 +28,12 @@ class ProductsController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|max:191',
-            'status' => 'nullable',
-            'deadline' => 'nullable|date',
+            'status' => 'required',
+            'deadline' => 'required|date',
             'leader_name' => 'required',
             ]);
         
         $status_array = ['企画','設計','組立て','完成','納品済'];
-        
         
         Product::create([
             'name' => $request->name,
@@ -48,9 +48,14 @@ class ProductsController extends Controller
     public function show($id)
     {
         $product = Product::find($id);
+        $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
         
-        return view('products.show',['product'=>$product,
-        ]);
+        $data = [
+            'product' => $product,
+            'product_comments' => $product_comments,
+        ];
+        
+        return view('products.show',$data);
     }
     
     public function edit($id)
@@ -64,8 +69,8 @@ class ProductsController extends Controller
     {
         $this->validate($request,[
             'name' => 'required|max:191',
-            'status' => 'nullable',
-            'deadline' => 'nullable|date',
+            'status' => 'required',
+            'deadline' => 'required|date',
             'leader_name' => 'required',
             ]);
             
