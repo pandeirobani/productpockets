@@ -13,15 +13,19 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::orderBy('created_at','desc')->paginate(20);
+        $users = User::all();
 
         return view('welcome',
             ['products' => $products,
+            'users' => $users,
         ]);
     }
 
     public function create()
     {
-        return view('products.create');
+        $users = User::pluck('name','id');
+        
+        return view('products.create',['users'=>$users]);
     }
 
     public function store(Request $request)
@@ -49,10 +53,12 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
+        $leader = User::find($product->leader_name);
         
         $data = [
             'product' => $product,
             'product_comments' => $product_comments,
+            'leader' => $leader,
         ];
         
         return view('products.show',$data);
@@ -61,8 +67,14 @@ class ProductsController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
+        $users = User::pluck('name','id');
         
-        return view('products.edit',['product' => $product]);
+        $data = [
+            'product' => $product, 
+            'users' => $users,
+        ];
+        
+        return view('products.edit',$data);
     }
     
     public function update(Request $request,$id)
@@ -83,15 +95,32 @@ class ProductsController extends Controller
         $product->leader_name = $request->leader_name;
         $product->save();
         
-        return view('products.show',['product'=>$product,
-        ]);
+        $leader = User::find($product->leader_name);
+        
+        $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
+        
+        $data = [
+            'product' => $product,
+            'leader' => $leader,
+            'product_comments' => $product_comments,
+        ];
+        
+        return view('products.show',$data);
+        
+        
     }
     
     public function delete_confirmation($id)
     {
         $product = Product::find($id);
+        $leader = User::find($product->leader_name);
         
-        return view('products.delete',['product' => $product]);
+        $data = [
+            'product' => $product,
+            'leader' => $leader,
+        ];
+        
+        return view('products.delete',$data);
     }
     
     public function destroy($id)
@@ -101,4 +130,6 @@ class ProductsController extends Controller
         
         return redirect('/');
     }
+    
+    
 }

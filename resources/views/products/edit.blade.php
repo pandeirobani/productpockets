@@ -12,22 +12,22 @@
             {!! Form::model($product,['route'=> ['products.update',$product->id],'method' => 'put']) !!}
                 <div class="form-group mb-5">
                     {!! Form::label('name','品名') !!}
-                    {!! Form::text('name',old('name'),['class'=>'form-control']) !!}
+                    {{ Form::text('name',old('name'),['class'=>'form-control']) }}
                 </div>
                 
                 <div class="form-group mb-5">
-                    {!! Form::label('status','状態') !!}
-                    {!! Form::select('status',['企画','設計','組立て','完成','納品済'],['class'=>'form-control']) !!}
+                    {!! Form::label('status','進行状況') !!}
+                    {{ Form::select('status',['企画','設計','組立て','完成','納品済'],null,['class'=>'form-control']) }}
                 </div>
                 
                 <div class="form-group mb-5">
                     {!! Form::label('deadline','納期') !!}
-                    {!! Form::date('deadline',old('deadline'),['class'=>'form-control']) !!}
+                    {{ Form::date('deadline',old('deadline'),['class'=>'form-control']) }}
                 </div>
                 
                 <div class="form-group mb-5">
-                    {!! Form::label('leadear_name','責任者') !!}
-                    {!! Form::text('leader_name',old('leader_name'),['class'=>'form-control']) !!}
+                    {!! Form::label('leader_name','責任者') !!}
+                    {{ Form::select('leader_name',$users,null,['class'=>'form-control']) }}
                 </div>
                 <br>
                 

@@ -19,4 +19,6 @@ class Product extends Model
     {
         return $this->hasMany(Product_comment::class);
     }
+    
+   
 }

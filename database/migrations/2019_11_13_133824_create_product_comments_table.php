@@ -20,7 +20,7 @@ class CreateProductCommentsTable extends Migration
             $table->string('content');
             $table->timestamps();
             
-            $table->foreign('product_id')->references('id')->on('products');
+            $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
 

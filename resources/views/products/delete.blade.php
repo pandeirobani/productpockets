@@ -6,7 +6,7 @@
         <thead>
             <tr>
                 <th scope="col" style="width:200px;" class="text-center">品名</th>
-                <th scope="col" style="width:180px;" class="text-center">状態</th>
+                <th scope="col" style="width:180px;" class="text-center">進行状況</th>
                 <th scope="col" style="width:100px;" class="text-center">納期</th>
                 <th scope="col" style="width:100px;" class="text-center">責任者</th>
             </tr>
@@ -16,7 +16,7 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->status }}</td>
                 <td>{{ $product->deadline }}</td>
-                <td>{{ $product->leader_name }}</td>
+                <td>{{ $leader->name }}</td>
             </tr>
         </tbody>
     </table>
