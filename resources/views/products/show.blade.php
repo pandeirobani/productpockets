@@ -18,7 +18,7 @@
                 <td>{{ $product->name }}</td>
                 <td>{{ $product->status }}</td>
                 <td>{{ $product->deadline }}</td>
-                <td>{{ $leader->name }}</td>
+                <td>{{ link_to_route('users.show',$leader->name,['id' => $product->leader_name]) }}</td>
             </tr>
         </tbody>
     </table>

@@ -38,6 +38,7 @@ Route::group(['middleware' => ['auth']], function() {
    Route::get('product/{id}/participants','UsersController@participants')->name('product.participants');
    
    Route::post('product_comment','Product_commentsController@store')->name('product_comment.store');
+   Route::delete('product_comment/{id}','Product_commentsController@destroy')->name('product_comment.destroy');
    
 });
 

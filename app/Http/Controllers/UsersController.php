@@ -21,11 +21,13 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
+        $users = User::all();
         
         $participatings = $user->feed_participatings()->orderBy('created_at','desc')->paginate(20);
         
         $data = [
             'user' => $user,
+            'users' => $users,
             'products' => $participatings,
         ];
         

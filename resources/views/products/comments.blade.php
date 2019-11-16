@@ -7,6 +7,9 @@
             <div>
                 <p class="mb-0">{!! nl2br(e($product_comment->content)) !!}</p>
             </div>
+            {!! Form::open(['route'=>['product_comment.destroy',$product_comment->id],'method'=>'delete']) !!}
+                {!! Form::submit('削除',['class'=>'btn']) !!}
+            {!! Form::close() !!}
         </li>
     @endforeach
 </ul>
