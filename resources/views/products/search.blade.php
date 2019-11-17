@@ -10,7 +10,7 @@
                 </div>
         </div>
     </div>
-    <h3>全製品一覧</h3>
+    <br>
     @include('products.products')
     @if(Auth::check())
         {!! link_to_route('products.create','新規製品登録',[],['class'=>'btn btn-info']) !!}

@@ -34,8 +34,7 @@ Route::group(['prefix' =>'users/{id}'],function() {
 
 Route::get('product/{id}/participants','UsersController@participants')->name('product.participants');
 
-Route::post('product_comment','Product_commentsController@store')->name('product_comment.store');
-Route::delete('product_comment/{id}','Product_commentsController@destroy')->name('product_comment.destroy');
+Route::match(['get','post'],'search','ProductsController@search')->name('products.search');
 
 //ログイン時のみのユーザ機能
 Route::group(['middleware' => ['auth']],function() {
@@ -46,7 +45,10 @@ Route::group(['middleware' => ['auth']],function() {
    Route::group(['prefix' =>'users/{id}'],function() {
       Route::post('paticipate','ParticipateController@store')->name('product.participate');
       Route::delete('unparticipate','ParticipateController@destroy')->name('product.unparticipate');
-   });   
+   });
+   
+   Route::post('product_comment','Product_commentsController@store')->name('product_comment.store');
+   Route::delete('product_comment/{id}','Product_commentsController@destroy')->name('product_comment.destroy');
 });
 
 

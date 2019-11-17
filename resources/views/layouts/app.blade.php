@@ -11,7 +11,7 @@
     
     <body>
         
-        <div class="container">
+        <div class="container pt-4">
             @include('commons.error_messages')
             
             @yield('content')

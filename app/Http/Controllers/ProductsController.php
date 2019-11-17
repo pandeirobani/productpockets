@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Product;
 use App\User;
@@ -140,5 +141,29 @@ class ProductsController extends Controller
         }
     }
     
+    public function search(Request $request)
+    {
+        $keyword = $request->input('keyword');
+        
+        if(!empty($keyword))
+        {
+            $products = DB::table('products')->where('name','like',"%{$keyword}%")->paginate(10);
+                
+        }else{
+            
+            $products = DB::table('products')->paginate(10);
+            
+        }
+        
+        $users = User::all();
+        
+        $data = [
+                'products' => $products,
+                'keyword' => $keyword,
+                'users' => $users,
+                ];
+        
+        return view('products.search',$data);
+    }
     
 }

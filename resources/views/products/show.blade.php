@@ -42,7 +42,7 @@
             {!! Form::open(['route' => 'product_comment.store']) !!}
                 {!! Form::hidden('product_id',$product->id) !!}
                     <div class="form-group">
-                        {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
+                        {!! Form::textarea('content', old('content'), ['class'=>'form-control', 'rows'=>'2']) !!}
                         {!! Form::submit('コメントを投稿', ['class' => 'btn btn-primary btn-block']) !!}
                     </div>
             {!! Form::close() !!}
