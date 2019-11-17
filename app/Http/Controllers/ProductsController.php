@@ -23,30 +23,33 @@ class ProductsController extends Controller
 
     public function create()
     {
-        $users = User::pluck('name','id');
-        
-        return view('products.create',['users'=>$users]);
+        if(\Auth::check()) {
+            $users = User::pluck('name','id');
+            return view('products.create',['users'=>$users]);
+        }
     }
 
     public function store(Request $request)
     {
-        $this->validate($request,[
-            'name' => 'required|max:191',
-            'status' => 'required',
-            'deadline' => 'required|date',
-            'leader_name' => 'required',
+        if(\Auth::check()) {
+            $this->validate($request,[
+                'name' => 'required|max:191',
+                'status' => 'required',
+                'deadline' => 'required|date',
+                'leader_name' => 'required',
+                ]);
+            
+            $status_array = ['企画','設計','組立て','完成','納品済'];
+            
+            Product::create([
+                'name' => $request->name,
+                'status' => $status_array[$request->status],
+                'deadline' => $request->deadline,
+                'leader_name' => $request->leader_name,
             ]);
-        
-        $status_array = ['企画','設計','組立て','完成','納品済'];
-        
-        Product::create([
-            'name' => $request->name,
-            'status' => $status_array[$request->status],
-            'deadline' => $request->deadline,
-            'leader_name' => $request->leader_name,
-        ]);
-
-        return redirect('/');
+    
+            return redirect('/');
+        }
     }
     
     public function show($id)
@@ -66,69 +69,75 @@ class ProductsController extends Controller
     
     public function edit($id)
     {
-        $product = Product::find($id);
-        $users = User::pluck('name','id');
-        
-        $data = [
-            'product' => $product, 
-            'users' => $users,
-        ];
-        
-        return view('products.edit',$data);
+        if(\Auth::check()) {
+            $product = Product::find($id);
+            $users = User::pluck('name','id');
+            
+            $data = [
+                'product' => $product, 
+                'users' => $users,
+            ];
+            
+            return view('products.edit',$data);
+        }
     }
     
     public function update(Request $request,$id)
     {
-        $this->validate($request,[
-            'name' => 'required|max:191',
-            'status' => 'required',
-            'deadline' => 'required|date',
-            'leader_name' => 'required',
-            ]);
+        if(\Auth::check()) {
+            $this->validate($request,[
+                'name' => 'required|max:191',
+                'status' => 'required',
+                'deadline' => 'required|date',
+                'leader_name' => 'required',
+                ]);
+                
+            $status_array = ['企画','設計','組立て','完成','納品済'];
+                
+            $product = Product::find($id);
+            $product->name = $request->name;
+            $product->status = $status_array[$request->status];    
+            $product->deadline = $request->deadline;
+            $product->leader_name = $request->leader_name;
+            $product->save();
             
-        $status_array = ['企画','設計','組立て','完成','納品済'];
+            $leader = User::find($product->leader_name);
             
-        $product = Product::find($id);
-        $product->name = $request->name;
-        $product->status = $status_array[$request->status];    
-        $product->deadline = $request->deadline;
-        $product->leader_name = $request->leader_name;
-        $product->save();
-        
-        $leader = User::find($product->leader_name);
-        
-        $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
-        
-        $data = [
-            'product' => $product,
-            'leader' => $leader,
-            'product_comments' => $product_comments,
-        ];
-        
-        return view('products.show',$data);
-        
-        
+            $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
+            
+            $data = [
+                'product' => $product,
+                'leader' => $leader,
+                'product_comments' => $product_comments,
+            ];
+            
+            return view('products.show',$data);
+        }
     }
     
     public function delete_confirmation($id)
     {
-        $product = Product::find($id);
-        $leader = User::find($product->leader_name);
-        
-        $data = [
-            'product' => $product,
-            'leader' => $leader,
-        ];
-        
-        return view('products.delete',$data);
+        if(\Auth::check()) {
+            $product = Product::find($id);
+            $leader = User::find($product->leader_name);
+            
+            $data = [
+                'product' => $product,
+                'leader' => $leader,
+            ];
+            
+            return view('products.delete',$data);
+        }
     }
     
     public function destroy($id)
     {
-        $product = Product::find($id);
-        $product->delete();
-        
-        return redirect('/');
+        if(\Auth::check()) {    
+            $product = Product::find($id);
+            $product->delete();
+            
+            return redirect('/');
+        }
     }
     
     

@@ -25,8 +25,10 @@
                         </ul>
                     </li>
                 @else
+                    <li class="nav-item">{!! link_to_route('index.get','製品一覧',[],['class'=>'nav-link']) !!}</li>
+                    <li class="nav-item">{!! link_to_route('users.index','メンバー一覧',[],['class'=>'nav-link']) !!}</li>
                     <li>{!! link_to_route('signup.get','新規メンバー登録',[],['class'=>'nav-link']) !!}</li>
-                    <li>{!! link_to_route('index.get','ログイン',[],['class'=>'nav-link']) !!}</li>
+                    <li>{!! link_to_route('login','ログイン',[],['class'=>'nav-link']) !!}</li>
                 @endif
             </ul>
         </div>

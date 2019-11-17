@@ -22,23 +22,30 @@
             </tr>
         </tbody>
     </table>
-    {!! Form::open(['route'=>['products.edit',$product->id]]) !!}
-        {!! Form::submit('製品情報を編集する',['class'=>"btn btn-info mb-2"]) !!}
-    {!! Form::close() !!}
-    {!! Form::open(['route'=>['products.delete_confirmation',$product->id]]) !!}
-        {!! Form::submit('製品情報を削除する',['class'=>"btn btn-danger"]) !!}
-    {!! Form::close() !!}
-    <br><br><br>
-    @include('participate.participate_button',['product'=>$product])
-    @include('products.comments',['product_comments' => $product_comments])
-    <div class="col-sm-8">
-        {!! Form::open(['route' => 'product_comment.store']) !!}
-            {!! Form::hidden('product_id',$product->id) !!}
-                <div class="form-group">
-                    {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
-                    {!! Form::submit('コメントを投稿', ['class' => 'btn btn-primary btn-block']) !!}
-                </div>
-        {!! Form::close() !!}
-    </div>
-    
+    @if(Auth::check())
+        <div style="display:inline-flex">
+            {!! Form::open(['route'=>['products.edit',$product->id]]) !!}
+                {!! Form::submit('製品情報を編集する',['class'=>"btn btn-info mb-2 mr-2"]) !!}
+            {!! Form::close() !!}
+            {!! Form::open(['route'=>['products.delete_confirmation',$product->id]]) !!}
+                {!! Form::submit('製品情報を削除する',['class'=>"btn btn-danger"]) !!}
+            {!! Form::close() !!}
+        </div>
+        <br><br><br>
+        @include('participate.participate_button',['product'=>$product])
+    @else
+        <br>
+    @endif
+        @include('products.comments',['product_comments' => $product_comments])
+    @if(Auth::check())
+        <div class="col-sm-8">
+            {!! Form::open(['route' => 'product_comment.store']) !!}
+                {!! Form::hidden('product_id',$product->id) !!}
+                    <div class="form-group">
+                        {!! Form::textarea('content', old('content'), ['class' => 'form-control', 'rows' => '2']) !!}
+                        {!! Form::submit('コメントを投稿', ['class' => 'btn btn-primary btn-block']) !!}
+                    </div>
+            {!! Form::close() !!}
+        </div>
+    @endif
 @endsection
