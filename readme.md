@@ -1,58 +1,38 @@
-<p align="center"><img src="https://laravel.com/assets/img/components/logo-laravel.svg"></p>
-
 <p align="center">
-<a href="https://travis-ci.org/laravel/framework"><img src="https://travis-ci.org/laravel/framework.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/d/total.svg" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/v/stable.svg" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
+Product Pockets
 </p>
 
-## About Laravel
+## "アプリケーション概要"
+工場向け機械等の制作に長期間を要する製品を複数並行して作っている現場を想定し、どの製品に誰が関わっているかや進行状況をまとめるためのアプリケーションです。
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as:
+## "背景"
+以前、私は鉄筋加工用の工場向け機械を制作する会社に勤めていました。製品毎の仕組みや構造に共通点は多くあったものの納品先によって規模や機能は様々で、一つ一つがほぼオーダーメイドでした。
+40人ほどいるうちの大半の社員は同時に複数の製品制作に関わっており、加えて制作メンバーを書面等で管理するということもしていません。
+そのため、製品に関して問い合わせがあった際の引継ぎ先がわかりにくかったり、スケジュールの関係等で制作メンバーを入れ替えた際に周知できていないといった問題が発生していました。
+そのような問題から発生する無駄な手間を減らして全体像を把握しやすくするアプリケーションがあればいいと考え、制作しました。
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## "アプリケーションの機能一覧"
+・ユーザ登録機能
+・ログイン機能
 
-Laravel is accessible, yet powerful, providing tools needed for large, robust applications.
+[ログインせずに使える機能]
+・製品一覧(10件毎にページネーション)
+・製品名検索
+・製品毎の参加メンバー一覧
+・製品毎のコメント閲覧(10件毎にページネーション)
+・各ユーザ毎の参加している製品一覧
 
-## Learning Laravel
+[ログイン時に使える機能]
+・新規製品登録
+・製品情報編集
+・製品情報削除
+・製品制作メンバーへの参加、脱退機能
+・製品にコメントを投稿
+・コメント削除(自分が投稿したものに限る)
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of any modern web application framework, making it a breeze to get started learning the framework.
-
-If you're not in the mood to read, [Laracasts](https://laracasts.com) contains over 1100 video tutorials on a range of topics including Laravel, modern PHP, unit testing, JavaScript, and more. Boost the skill level of yourself and your entire team by digging into our comprehensive video library.
-
-## Laravel Sponsors
-
-We would like to extend our thanks to the following sponsors for helping fund on-going Laravel development. If you are interested in becoming a sponsor, please visit the Laravel [Patreon page](https://patreon.com/taylorotwell):
-
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[British Software Development](https://www.britishsoftware.co)**
-- [Fragrantica](https://www.fragrantica.com)
-- [SOFTonSOFA](https://softonsofa.com/)
-- [User10](https://user10.com)
-- [Soumettre.fr](https://soumettre.fr/)
-- [CodeBrisk](https://codebrisk.com)
-- [1Forge](https://1forge.com)
-- [TECPRESSO](https://tecpresso.co.jp/)
-- [Pulse Storm](http://www.pulsestorm.net/)
-- [Runtime Converter](http://runtimeconverter.com/)
-- [WebL'Agence](https://weblagence.com/)
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
-
-## License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## "アプリケーションの使用技術一覧"
+言語：HTML5,CSS3,PHP7.2.24
+フレームワーク：Bootstrap4,Laravel5.5
+統合開発環境：AWSのCloud9
+データベース：MySQL
+デプロイ：Heroku
