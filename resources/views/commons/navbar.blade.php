@@ -1,4 +1,4 @@
-<header class="mb-4">
+<header class="mb-4 sticky-top">
     <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
         <div class="navbar-brand">
             

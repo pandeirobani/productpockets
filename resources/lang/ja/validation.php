@@ -101,5 +101,6 @@ return [
         'password'=>'パスワード',
         'name'=>'名前',
         'deadline'=>'納期',
+        'content'=>'コメント本文'
         ],
 ];
