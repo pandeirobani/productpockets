@@ -11,7 +11,7 @@ class UsersController extends Controller
 {
     public function index()
     {
-        $users = User::orderBy('id','desc')->paginate(20);
+        $users = User::orderBy('id','desc')->paginate(10);
         
         return view('users.index',
             ['users' => $users,
@@ -23,7 +23,7 @@ class UsersController extends Controller
         $user = User::find($id);
         $users = User::all();
         
-        $participatings = $user->feed_participatings()->orderBy('created_at','desc')->paginate(20);
+        $participatings = $user->feed_participatings()->orderBy('created_at','desc')->paginate(10);
         
         $data = [
             'user' => $user,
