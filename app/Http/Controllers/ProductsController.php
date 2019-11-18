@@ -15,11 +15,13 @@ class ProductsController extends Controller
     {
         $products = Product::orderBy('created_at','desc')->paginate(10);
         $users = User::all();
-
-        return view('welcome',
-            ['products' => $products,
+        
+        $data = [
+            'products' => $products,
             'users' => $users,
-        ]);
+        ];
+
+        return view('welcome',$data);
     }
 
     public function create()
