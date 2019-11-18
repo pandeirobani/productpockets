@@ -14,7 +14,7 @@ class ProductsController extends Controller
     public function index()
     {
         $products = Product::orderBy('created_at','desc')->paginate(10);
-        $users = User::all();
+        $users = User::pluck('name','id');
         
         $data = [
             'products' => $products,
@@ -35,6 +35,8 @@ class ProductsController extends Controller
     public function store(Request $request)
     {
         if(\Auth::check()) {
+            
+            
             $this->validate($request,[
                 'name' => 'required|max:191',
                 'status' => 'required',
@@ -43,6 +45,7 @@ class ProductsController extends Controller
                 ]);
             
             $status_array = ['企画','設計','組立て','完成','納品済'];
+            
             
             Product::create([
                 'name' => $request->name,
@@ -157,7 +160,7 @@ class ProductsController extends Controller
             
         }
         
-        $users = User::all();
+        $users = User::pluck('name','id');
         
         $data = [
                 'products' => $products,

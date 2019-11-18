@@ -21,7 +21,7 @@ class UsersController extends Controller
     public function show($id)
     {
         $user = User::find($id);
-        $users = User::all();
+        $users = User::pluck('name','id');
         
         $participatings = $user->feed_participatings()->orderBy('created_at','desc')->paginate(10);
         

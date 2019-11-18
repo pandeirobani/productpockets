@@ -14,7 +14,7 @@
                 <td>{{ link_to_route('products.show',$product->name,['id' => $product->id]) }}</td>
                 <td>{{ $product->status }}</td>
                 <td>{{ $product->deadline }}</td>
-                <td>{{ link_to_route('users.show',$users[$product->leader_id - 1]->name,['id' => $product->leader_id]) }}</td>
+                <td>{{ link_to_route('users.show',$users[$product->leader_id],['id' => $product->leader_id]) }}</td>
             </tr>
             @endforeach
         </tbody>
