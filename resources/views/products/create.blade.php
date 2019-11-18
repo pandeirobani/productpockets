@@ -27,8 +27,8 @@
                     </div>
                     
                     <div class="form-group mb-5">
-                        {!! Form::label('leader_name','責任者') !!}
-                        {{ Form::select('leader_name',$users,null,['class'=>'form-control']) }}
+                        {!! Form::label('leader_id','責任者') !!}
+                        {{ Form::select('leader_id',$users,null,['class'=>'form-control']) }}
                     </div>
                     <br>
                     

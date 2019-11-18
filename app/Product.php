@@ -8,7 +8,7 @@ use App\Product_comment;
 
 class Product extends Model
 {
-    protected $fillable = ['name','leader_name','status','deadline'];
+    protected $fillable = ['name','leader_id','status','deadline'];
     
     public function participants()
     {

@@ -37,7 +37,7 @@ class ProductsController extends Controller
                 'name' => 'required|max:191',
                 'status' => 'required',
                 'deadline' => 'required|date',
-                'leader_name' => 'required',
+                'leader_id' => 'required',
                 ]);
             
             $status_array = ['企画','設計','組立て','完成','納品済'];
@@ -46,7 +46,7 @@ class ProductsController extends Controller
                 'name' => $request->name,
                 'status' => $status_array[$request->status],
                 'deadline' => $request->deadline,
-                'leader_name' => $request->leader_name,
+                'leader_id' => $request->leader_id,
             ]);
     
             return redirect('/');
@@ -57,7 +57,7 @@ class ProductsController extends Controller
     {
         $product = Product::find($id);
         $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
-        $leader = User::find($product->leader_name);
+        $leader = User::find($product->leader_id);
         
         $data = [
             'product' => $product,
@@ -90,7 +90,7 @@ class ProductsController extends Controller
                 'name' => 'required|max:191',
                 'status' => 'required',
                 'deadline' => 'required|date',
-                'leader_name' => 'required',
+                'leader_id' => 'required',
                 ]);
                 
             $status_array = ['企画','設計','組立て','完成','納品済'];
@@ -99,10 +99,10 @@ class ProductsController extends Controller
             $product->name = $request->name;
             $product->status = $status_array[$request->status];    
             $product->deadline = $request->deadline;
-            $product->leader_name = $request->leader_name;
+            $product->leader_id = $request->leader_id;
             $product->save();
             
-            $leader = User::find($product->leader_name);
+            $leader = User::find($product->leader_id);
             
             $product_comments = $product->product_comments()->orderBy('created_at','desc')->paginate(10);
             
@@ -120,7 +120,7 @@ class ProductsController extends Controller
     {
         if(\Auth::check()) {
             $product = Product::find($id);
-            $leader = User::find($product->leader_name);
+            $leader = User::find($product->leader_id);
             
             $data = [
                 'product' => $product,

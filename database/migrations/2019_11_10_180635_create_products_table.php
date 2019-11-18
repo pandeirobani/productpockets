@@ -16,10 +16,12 @@ class CreateProductsTable extends Migration
         Schema::create('products', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name')->unique();
-            $table->string('leader_name');
+            $table->integer('leader_id')->unsigned();
             $table->string('status');
             $table->date('deadline');
             $table->timestamps();
+            
+            $table->foreign('leader_id')->references('id')->on('users');
         });
         
     }
