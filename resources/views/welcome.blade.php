@@ -2,7 +2,14 @@
 
 @section('content')
     <div class="container">
-       <div class="row">
+        @if(!Auth::check())
+            <div class="mb-5 pb-4">
+                <h3>テストログイン用ID：test</h3>
+                <h3>パスワード：123456</h3>
+            </div>
+        @endif
+        
+        <div class="row">
             {!! Form::open(['route'=> 'products.search']) !!}
                 <div class="form-group mb-5" style="display:inline-flex">
                     {{ Form::text('keyword','',['placeholder'=>'品名検索','class'=>'form-control mr-2']) }}
