@@ -3,7 +3,9 @@
 @section('content')
         @if(!Auth::check())
         <div class="text-center mb-5">
-            <h2>ログイン</h2>
+            <h2>ログイン</h2><br>
+            <h3>テストログイン用ID：test</h3>
+            <h3>パスワード：123456</h3> 
         </div>
         <div class="row mt-3">
             <div class="col-sm-6 offset-sm-3">
